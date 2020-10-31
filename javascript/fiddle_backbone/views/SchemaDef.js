@@ -71,6 +71,7 @@ define ([
             else
             {
                 $(".needsReadySchema").block({ message: "Please build schema." });
+                // $(".needsReadySchema").css("background-color","white")
                 $("#schemaBrowser").attr("disabled", true);
                 $(".schema .helpTip").css("display",  (this.model.get('loading') || this.model.get("ddl").length) ? "none" : "block");
 

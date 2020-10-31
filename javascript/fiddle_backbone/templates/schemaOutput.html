@@ -1,5 +1,21 @@
         {{#if errorMessage}}
         <div class="alert alert-error database-error database-messages"><i class="icon-remove"></i>{{errorMessage}}</div>
         {{else}}
-        <div class="alert alert-success database-messages"><i class="icon-ok"></i>Schema Ready</div>
+                {{#if createDB}}
+                        {{#if createDbErrMsg}}
+                        <div class="alert alert-error database-error database-messages"><i class="icon-remove"></i>{{this.createDbErrMsg}}</div>
+                        {{else}}
+                        <div class="alert alert-success database-messages"><i class="icon-ok"></i>Database Ready</div>
+                        {{/if}}
+                {{else}}
+                        {{#if useDB}}
+                                {{#if useDbErrMsg}}
+                                <div class="alert alert-error database-error database-messages"><i class="icon-remove"></i>{{this.createDbErrMsg}}</div>
+                                {{else}}
+                                <div class="alert alert-success database-messages"><i class="icon-ok"></i>Database Ready to use</div>
+                                {{/if}}
+                        {{else}}
+                        <div class="alert alert-success database-messages"><i class="icon-ok"></i>Schema Ready </div>
+                        {{/if}}
+                {{/if}}
         {{/if}}

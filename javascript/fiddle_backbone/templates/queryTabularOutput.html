@@ -21,12 +21,12 @@
             <i class="icon-ok"></i>
             Record Count: {{this.RESULTS.DATA.length}}; Execution Time: {{this.EXECUTIONTIME}}ms
             {{#if this.EXECUTIONPLAN.DATA.length}}
-            <a href="#executionPlan" class="executionPlanLink"><i class="icon-plus"></i>View Execution Plan</a>
+            <!-- <a href="#executionPlan" class="executionPlanLink"><i class="icon-plus"></i>View Execution Plan</a> -->
             {{/if}}
             <a href="#!{{../../schemaDef/dbType/id}}/{{../../schemaDef/short_code}}/{{../../id}}/{{index}}" class="setLink"><i class="icon-share-alt"></i> link</a>
         </div>
 
-        {{#if this.EXECUTIONPLAN.DATA.length}}
+        <!-- {{#if this.EXECUTIONPLAN.DATA.length}}
             <table class="executionPlan table table-bordered">
                 <tr>
                 {{#each this.EXECUTIONPLAN.COLUMNS}}
@@ -48,19 +48,17 @@
             {{/if}}
 
             </table>
-        {{/if}}
+        {{/if}} -->
 
     {{else}}
         <div id="messages_{{index}}" class="alert alert-error database-messages"><i class="icon-remove"></i>{{this.ERRORMESSAGE}}</div>
-
+<!-- 
         {{#unless ../../schemaDef/dbType/num_hosts}}
             <div id="messages_{{index}}" class="alert alert-warning database-messages convert-to-latest">
                 <i class="icon-random"></i>Click here to convert current fiddle to use the latest available ( {{../../../latestDBType/full_name}} )
             </div>
-        {{/unless}}
+        {{/unless}} -->
 
     {{/if}}
 </div>
 {{/each_with_index}}
-
-<span id="donationSuggestion">Did this query solve the problem? If so, consider donating $5 to help make sure SQL Fiddle will be here next time you need help with a database problem. Thanks!</span>

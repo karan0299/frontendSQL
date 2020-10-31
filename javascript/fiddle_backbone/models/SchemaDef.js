@@ -11,6 +11,10 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
             "errorMessage": "",
             "loading": false,
             "ready": false,
+            "createDB": false,
+            "createDbErrMsg":"",
+            "useDB": false,
+            "useDbErrMsg":"",
             "schema_structure": [],
             "statement_separator": ";",
             "browserEngines": {}
@@ -36,14 +40,46 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
                 var short_code;
                 console.log(data)
                 if (data.type == "createdb"){
+                    if (data.msg == ""){
+                        thisModel.set({
+                            "short_code": "",
+                            "ready": false,
+                            "valid": false,
+                            "createDB": true,
+                            "createDbErrMsg": "",
+                            "errorMessage":"",
+                            "schema_structure": []
+                        });
+                         thisModel.trigger("failed");
+                        //  this.model._changing = true
+                         console.log(thisModel)
+                    } else {
+                        thisModel.set({
+                            "short_code": "",
+                            "ready": false,
+                            "valid": false,
+                            "createDB": true,
+                            "createDbErrMsg": data.msg,
+                            "errorMessage":"",
+                            "schema_structure": []
+                        });
+                         thisModel.trigger("failed");
+                         this.model._changing = true
+                         console.log(thisModel)
+                    }
+                }
+                else if (data.type == "usedb") {
                     thisModel.set({
                         "short_code": "",
                         "ready": false,
                         "valid": false,
-                        "errorMessage": data.msg,
+                        "createDB":false,
+                        "useDB": true,
+                        "useDbErrMsg": data.msg,
                         "schema_structure": []
                     });
                     thisModel.trigger("failed");
+                    console.log(thisModel)
                 }
                 else if (data._id) {
                     short_code = data._id.split('_')[1];
@@ -92,6 +128,7 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
 
                         thisModel.set({
                             "short_code": short_code,
+                            "useDB": false,
                             "ready": true,
                             "valid": true,
                             "errorMessage": "",
@@ -99,6 +136,7 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
                         });
 
                         thisModel.trigger("built");
+                        console.log(thisModel)
                     }
 
                 } else {
@@ -115,6 +153,7 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
                 }
             },
             function (jqXHR, textStatus, errorThrown) {
+                console.log("sad")
                 thisModel.set({
                     "short_code": "",
                     "ready": false,

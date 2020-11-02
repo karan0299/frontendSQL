@@ -14,6 +14,7 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
             "createDB": false,
             "createDbErrMsg":"",
             "useDB": false,
+            "dbname":"",
             "useDbErrMsg":"",
             "schema_structure": [],
             "statement_separator": ";",
@@ -75,6 +76,7 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
                         "valid": false,
                         "createDB":false,
                         "useDB": true,
+                        "dbname": data.db,
                         "useDbErrMsg": data.msg,
                         "schema_structure": []
                     });

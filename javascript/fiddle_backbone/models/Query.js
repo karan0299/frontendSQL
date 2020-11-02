@@ -24,7 +24,8 @@ define(["./OpenIDMResource", "Backbone"], function (idm, Backbone) {
                 type: "POST",
                 url: "/parse",
                 data: {
-                    sql: this.get("sql")
+                    sql: this.get("sql"),
+                    db: this.get("schemaDef").get("dbname")
                 }
             })
             .then(function (resp, textStatus, jqXHR) {
